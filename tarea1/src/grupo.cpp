@@ -86,3 +86,30 @@ void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
 
     /****** Fin de parte Parte 5.5 *****/ 
 }
+
+void agregarAGrupo(TGrupo& grupo, TPersona persona){
+    if (grupo->tope < MAX_PERSONAS){
+        nat i = grupo->tope-1;
+        while(i >= 0 && compararTFechas(fechaNacimientoTPersona(grupo->personas), fechaNacimientoTPersona(persona)) > 0){
+            grupo->personas[i+1] = grupo->personas[i];
+            i--;
+        }
+        grupo->personas[i+1]= persona;
+        grupo->tope++;
+
+    }
+}
+void agregarAGrupo(TGrupo& grupo, TPersona persona){
+    if (grupo->tope < MAX_PERSONAS){
+        nat i = grupo->tope-1;
+        while(i >= 0 && compararTFechas(fechaNacimientoTPersona(grupo->personas), fechaNacimientoTPersona(persona)) > 0){
+            grupo->personas[i+1] = grupo->personas[i];
+            i--;
+        }
+        grupo->personas[i+1]= persona;
+        grupo->tope++;
+
+    }
+}
+
+
