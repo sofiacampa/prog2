@@ -53,3 +53,6 @@ int compararTFechas(TFecha fecha1, TFecha fecha2) {
     /****** Fin de parte Parte 3.10 *****/
     return res;
 }
+src/grupo.cpp:9:8: error: expected initializer before ‘crearTGrupo’
+    9 | TGrupo crearTGrupo(){
+      |       
