@@ -79,10 +79,28 @@ bool hayPersonasFecha(TGrupo grupo, TFecha fecha){
     return hay;
 }
 
-// Imprime en pantalla las personas del grupo que tengan la fecha de nacimiento "fecha" 
-void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
-    /************ Parte 5.5 ************/
-    /*Escriba el código a continuación */
+src/grupo.cpp: In function ‘void agregarAGrupo(rep_grupo*&, TPersona)’:
+src/grupo.cpp:22:72: error: cannot convert ‘rep_persona**’ to ‘TPersona’ {aka ‘rep_persona*’}
+   22 | le(i >= 0 && compararTFechas(fechaNacimientoTPersona(grupo->personas), fechaNacimientoTPersona(persona)) > 0){
+      |                                                      ~~~~~~~^~~~~~~~
+      |                                                             |
+      |                                                             rep_persona**
 
-    /****** Fin de parte Parte 5.5 *****/ 
+In file included from src/../include/grupo.h:12,
+                 from src/grupo.cpp:1:
+src/../include/persona.h:40:41: note:   initializing argument 1 of ‘rep_fecha* fechaNacimientoTPersona(TPersona)’
+   40 | TFecha fechaNacimientoTPersona(TPersona persona);
+      |                                ~~~~~~~~~^~~~~~~
+
+	      void agregarAGrupo(TGrupo& grupo, TPersona persona){
+    if (grupo->tope < MAX_PERSONAS){
+        nat i = grupo->tope-1;
+        while(i >= 0 && compararTFechas(fechaNacimientoTPersona(grupo->personas), fechaNacimientoTPersona(persona)) > 0){
+            grupo->personas[i+1] = grupo->personas[i];
+            i--;
+        }
+        grupo->personas[i+1]= persona;
+        grupo->tope++;
+
+    }
 }
