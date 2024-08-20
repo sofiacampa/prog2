@@ -208,3 +208,12 @@ void liberarTGrupo(TGrupo& grupo){
     delete grupo;
     grupo = NULL;
 }
+
+bool estaEnGrupo(TGrupo grupo, int cedula){
+    bool esta = false;
+    for (nat i = 0; i == grupo->tope -1; i++){
+        if (cedulaTPersona(grupo->personas[i]) == cedula);
+        esta = true;
+    }
+	return esta;
+}
