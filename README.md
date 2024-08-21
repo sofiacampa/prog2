@@ -83,6 +83,12 @@ int compararTFechas(TFecha fecha1, TFecha fecha2) {
     return res;
 }
 
+
+
+
+
+
+
 #include "../include/persona.h"
 
 // Define la estructura Persona
@@ -117,9 +123,11 @@ void apellidoPersona(TPersona persona, char apellido[MAX_APELLIDO]){
 // Función que libera la memoria asignada para una persona
 // Debe liberar también la memoria de la fecha asociada
 void liberarTPersona(TPersona &persona){
-    liberarTFecha(persona->nacimiento);
+    if (persona != NULL){
+        liberarTFecha(persona->nacimiento);
     delete persona;
     persona = NULL;
+}
 }
 
 // Función que retorna la cédula de la persona
@@ -155,6 +163,8 @@ bool esMasJoven(TPersona persona1, TPersona persona2){
     }
 	return masJoven;
 }
+
+
 #include "../include/grupo.h"
 
 struct rep_grupo {
@@ -174,10 +184,10 @@ TGrupo crearTGrupo(){
 // Si dos personas tienen la misma fecha de nacimiento, deben ordenarse por orden de ingreso al grupo, de más nuevo a más antiguo
 // Si la cantidad de personas en el grupo es igual a MAX_PERSONAS, la función no tiene efecto
 void agregarAGrupo(TGrupo& grupo, TPersona persona){
-    if (grupo->tope < MAX_PERSONAS){
+    if (grupo->tope >= MAX_PERSONAS){
         return;
         }
-        nat i = grupo->tope-1;
+        int i = grupo->tope-1;
         while(i >= 0 && esMasJoven(grupo->personas[i],persona)){
             grupo->personas[i+1] = grupo->personas[i];
             i--;
@@ -209,13 +219,34 @@ void liberarTGrupo(TGrupo& grupo){
     grupo = NULL;
 }
 
+
+// Función para verificar si un elemento de tipo TPersona existe en un grupo
+// Recibe un grupo y la cédula de la persona y regresa un booleano indicando su existencia
 bool estaEnGrupo(TGrupo grupo, int cedula){
     bool esta = false;
-    for (nat i = 0; i == grupo->tope -1; i++){
-        if (cedulaTPersona(grupo->personas[i]) == cedula);
+    for (nat i = 0; i < grupo->tope; i++){
+        if (cedulaTPersona(grupo->personas[i]) == cedula){
         esta = true;
+        }
     }
 	return esta;
+}
+
+// Esta función remueve la persona con ci "cedula" del grupo "grupo"
+void removerDeGrupo(TGrupo &grupo, int cedula){
+    if (estaEnGrupo(grupo,cedula)){
+        nat indice;
+        for (nat i = 0; i < grupo-> tope; i++){
+            if (cedulaTPersona(grupo->personas[i]) == cedula){
+               indice = i;
+            }
+        }
+        liberarTPersona(grupo->personas[indice]);
+        for (nat i =indice; i < grupo->tope; i++){
+            grupo->personas[i]= grupo->personas[i+1];
+        }
+        grupo->tope--;
+    }  
 }
 
 // Función para verificar si hay, al menos, una persona en el grupo que tenga la fecha de nacimiento "fecha"
