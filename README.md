@@ -217,3 +217,14 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
     }
 	return esta;
 }
+
+// Imprime en pantalla las personas del grupo que tengan la fecha de nacimiento "fecha" 
+void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
+    if (hayPersonasFecha(grupo, fecha)){
+        for (nat i=0; i < grupo->tope; i++){
+            if (compararTFechas(fechaNacimientoTPersona(grupo->personas[i]),fecha) == 0){
+               imprimirTPersona(grupo->personas[i]);
+            }
+        }
+    }
+}
