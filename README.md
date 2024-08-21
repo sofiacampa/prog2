@@ -279,3 +279,39 @@ void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
         }
     }
 }
+
+make t-grupo6-personasfecha-hay-imprimir
+Compilando src/grupo.cpp 
+Compilando y enlazando principal 
+18,21c18
+< 24>Persona Persona2 Apellido2
+< Cedula: 2222222
+< Fecha de nacimiento: 1/1/2001
+< Persona Persona1 Apellido1
+---
+> 24>Persona Persona1 Apellido1
+24,27c21,24
+< 25>Persona Persona4 Apellido4
+< Cedula: 4444444
+< Fecha de nacimiento: 1/1/2002
+< Persona Persona3 Apellido3
+---
+> Persona Persona2 Apellido2
+> Cedula: 2222222
+> Fecha de nacimiento: 1/1/2001
+> 25>Persona Persona3 Apellido3
+30,33c27,30
+< 26>Persona Persona6 Apellido6
+< Cedula: 6666666
+< Fecha de nacimiento: 1/1/2003
+< Persona Persona5 Apellido5
+---
+> Persona Persona4 Apellido4
+> Cedula: 4444444
+> Fecha de nacimiento: 1/1/2002
+> 26>Persona Persona5 Apellido5
+34a32,34
+> Fecha de nacimiento: 1/1/2003
+> Persona Persona6 Apellido6
+> Cedula: 6666666
+
