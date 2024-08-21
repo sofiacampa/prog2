@@ -218,6 +218,26 @@ bool estaEnGrupo(TGrupo grupo, int cedula){
 	return esta;
 }
 
+// Función para verificar si hay, al menos, una persona en el grupo que tenga la fecha de nacimiento "fecha"
+// Debe implementarse utilizando búsqueda binaria
+bool hayPersonasFecha(TGrupo grupo, TFecha fecha){
+    bool hay = false;
+    int inicio = 0;
+    int fin = grupo->tope -1;
+    while (inicio <= fin){
+        int medio = inicio + (fin - inicio)/2;
+        int comp = compararTFechas(fechaNacimientoTPersona(grupo->personas[medio]),fecha);
+        if (comp == 0){
+            hay = true;
+        } else if (comp< 0){
+            inicio = medio +1;
+        }else {
+            fin = medio -1;
+        }
+    }
+    return hay;
+}
+
 // Imprime en pantalla las personas del grupo que tengan la fecha de nacimiento "fecha" 
 void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
     if (hayPersonasFecha(grupo, fecha)){
