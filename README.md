@@ -1,3 +1,98 @@
+sofia@sofifi:~/Desktop/Entrega1/tarea1$ make t-grupo6-personasfecha-hay-imprimir
+Compilando src/grupo.cpp 
+Compilando y enlazando principal 
+1,37c1,20
+< 1>El grupo ha sido creado de forma exitosa.
+< 2>3>Persona creada de forma exitosa.
+< 4>Se ha agregado la persona al grupo de forma exitosa.
+< 5>6>Persona creada de forma exitosa.
+< 7>Se ha agregado la persona al grupo de forma exitosa.
+< 8>9>Persona creada de forma exitosa.
+< 10>Se ha agregado la persona al grupo de forma exitosa.
+< 11>12>Persona creada de forma exitosa.
+< 13>Se ha agregado la persona al grupo de forma exitosa.
+< 14>15>Persona creada de forma exitosa.
+< 16>Se ha agregado la persona al grupo de forma exitosa.
+< 17>18>Persona creada de forma exitosa.
+< 19>Se ha agregado la persona al grupo de forma exitosa.
+< 20>Se encontraron personas en la fecha determinada.
+< 21>Se encontraron personas en la fecha determinada.
+< 22>Se encontraron personas en la fecha determinada.
+< 23>No se encontraron personas en la fecha determinada.
+< 24>Persona Persona2 Apellido2
+< Cedula: 2222222
+< Fecha de nacimiento: 1/1/2001
+< Persona Persona1 Apellido1
+< Cedula: 1111111
+< Fecha de nacimiento: 1/1/2001
+< 25>Persona Persona4 Apellido4
+< Cedula: 4444444
+< Fecha de nacimiento: 1/1/2002
+< Persona Persona3 Apellido3
+< Cedula: 3333333
+< Fecha de nacimiento: 1/1/2002
+< 26>Persona Persona6 Apellido6
+< Cedula: 6666666
+< Fecha de nacimiento: 1/1/2003
+< Persona Persona5 Apellido5
+< Cedula: 5555555
+< Fecha de nacimiento: 1/1/2003
+< 27>28>Se ha borrado el grupo en forma exitosa.
+< 29>Fin.
+---
+> ==28478== Invalid read of size 8
+> ==28478==    at 0x10A9AD: OrdenarGrupo(rep_grupo*&) (grupo.cpp:23)
+> ==28478==    by 0x10AA6B: agregarAGrupo(rep_grupo*&, rep_persona*) (grupo.cpp:39)
+> ==28478==    by 0x109FEC: main_agregarAGrupo(rep_grupo*&, rep_persona*&) (principal.cpp:316)
+> ==28478==    by 0x109674: main (principal.cpp:151)
+> ==28478==  Address 0x804e260f8 is not stack'd, malloc'd or (recently) free'd
+> ==28478== 
+> ==28478== 
+> ==28478== Process terminating with default action of signal 11 (SIGSEGV)
+> ==28478==  Access not within mapped region at address 0x804E260F8
+> ==28478==    at 0x10A9AD: OrdenarGrupo(rep_grupo*&) (grupo.cpp:23)
+> ==28478==    by 0x10AA6B: agregarAGrupo(rep_grupo*&, rep_persona*) (grupo.cpp:39)
+> ==28478==    by 0x109FEC: main_agregarAGrupo(rep_grupo*&, rep_persona*&) (principal.cpp:316)
+> ==28478==    by 0x109674: main (principal.cpp:151)
+> ==28478==  If you believe this happened as a result of a stack
+> ==28478==  overflow in your program's main thread (unlikely but
+> ==28478==  possible), you can try to increase the size of the
+> ==28478==  main thread stack using the --main-stacksize= flag.
+> ==28478==  The main thread stack size used in this run was 8388608.
+> timeout: the monitored command dumped core
+sofia@sofifi:~/Desktop/Entrega1/tarea1$ make testing
+timeout 4 valgrind -q --leak-check=full ./principal < test/fecha1-crear-imprimir-liberar.in > test/salidas/fecha1-crear-imprimir-liberar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/fecha2-aumentar.in > test/salidas/fecha2-aumentar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/fecha3-comparar.in > test/salidas/fecha3-comparar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/fecha4-combinado.in > test/salidas/fecha4-combinado.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona1-crear-imprimirnombre-liberar.in > test/salidas/persona1-crear-imprimirnombre-liberar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona2-imprimirci.in > test/salidas/persona2-imprimirci.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona3-imprimirfecha.in > test/salidas/persona3-imprimirfecha.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona4-imprimirpersona.in > test/salidas/persona4-imprimirpersona.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona5-esmasjovenpersona.in > test/salidas/persona5-esmasjovenpersona.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/persona6-esmasviejapersona.in > test/salidas/persona6-esmasviejapersona.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo1-crear-liberar.in > test/salidas/grupo1-crear-liberar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo2-agregar-imprimir.in > test/salidas/grupo2-agregar-imprimir.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo3-agregarvarios-imprimir.in > test/salidas/grupo3-agregarvarios-imprimir.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo4-buscar.in > test/salidas/grupo4-buscar.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo5-remover.in > test/salidas/grupo5-remover.sal 2>&1
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo6-personasfecha-hay-imprimir.in > test/salidas/grupo6-personasfecha-hay-imprimir.sal 2>&1
+make: [Makefile:116: test/salidas/grupo6-personasfecha-hay-imprimir.sal] Error 139 (ignored)
+---- ERROR en caso test/salidas/grupo6-personasfecha-hay-imprimir.diff ----
+timeout 4 valgrind -q --leak-check=full ./principal < test/grupo7-combinado.in > test/salidas/grupo7-combinado.sal 2>&1
+make: [Makefile:116: test/salidas/grupo7-combinado.sal] Error 139 (ignored)
+---- ERROR en caso test/salidas/grupo7-combinado.diff ----
+-- CASOS CON ERRORES --
+grupo6-personasfecha-hay-imprimir
+grupo7-combinado
+-- RESULTADO DE CADA CASO --
+11111111111111100
+sofia@sofifi:~/Desktop/Entrega1/tarea1$ 
+
+
+
+
+
 
 #include "../include/fecha.h"
 
