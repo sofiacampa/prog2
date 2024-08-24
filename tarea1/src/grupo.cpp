@@ -86,3 +86,10 @@ void imprimirPersonasFecha(TGrupo grupo, TFecha fecha){
 
     /****** Fin de parte Parte 5.5 *****/ 
 }
+void liberarTGrupo(TGrupo& grupo){
+    for(nat i =0; i < grupo->tope; i++){
+        liberarTPersona(grupo->personas[i]);
+    }
+    delete grupo;
+    grupo = NULL;
+}
